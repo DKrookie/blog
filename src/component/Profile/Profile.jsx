@@ -18,13 +18,13 @@ export default function Profile(props) {
           href="mailto:lorexxar@gmail.com"
           target="_blank"
           rel="noreferrer"
-        />
+        >{""}</a>
         <a
           className="iconfont icon-github"
           href="https://github.com/DKrookie"
           target="_blank"
           rel="noreferrer"
-        />
+        >{""}</a>
       </div>
       <div className="frends">
         <div>友链</div>
