@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 export default function Articles(props) {
   let articles = [];
   for (let i = 0; i < 20 && i < props.articles.length; i++) {
-    let ele = props.articles[i].split(" ");
+    let ele = props.articles[i].split("*=*");
+    let tmp = ele[4].split(" ");
     let tag = [];
-    for (let i = 4; i < ele.length; i++) {
+    for (let i = 0; i < tmp.length; i++) {
       tag.push(
         <span className="post-tag" to="/" key={ele[i]}>
-          {ele[i]}
+          {tmp[i]}
         </span>
       );
     }

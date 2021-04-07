@@ -12,7 +12,7 @@ export default function SidebarContent(props) {
                 <div className="tag-name">{ele.tagName}</div>
                 <ul className="year-list">
                   {ele.files.map((ele) => {
-                    ele = ele.split(" ");
+                    ele = ele.split("*=*");
                     return (
                       <li className="tags-post-item" key={ele[0]}>
                         <span className="tags-post-date">{ele[1]}</span>
