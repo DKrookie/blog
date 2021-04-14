@@ -6,6 +6,9 @@ import Page from "../../component/GenPage/GenPage";
 import Profile from "../../component/Profile/Profile";
 
 export default function Home(props) {
+  if (props.match.params.page <= 0) {
+    props.history.push("/page/1");
+  }
   return (
     <Tmpelate
       tags={props.tags}
@@ -17,15 +20,15 @@ export default function Home(props) {
       }
       component={
         <>
+          <Profile />
           <main className="articles">
             <Articles articles={props.articles} />
             <Page
               total={props.articles.length}
-              pageSize={20}
+              pageSize={10}
               currentPage={props.match.params.page}
             />
           </main>
-          <Profile />
         </>
       }
     />
