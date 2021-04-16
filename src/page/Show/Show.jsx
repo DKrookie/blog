@@ -46,14 +46,14 @@ export default class Show extends Component {
     let { info } = this.state,
       tags = [];
     if (info.length) {
-      tags = info[4].split(" ");
+      tags = info[1].split(" ");
     }
     return (
       <Template
         tags={this.props.tags}
         title={
           <>
-            <h1>{info[3]}</h1>
+            <h1>{info[0]}</h1>
             {tags.map((ele) => (
               <span key={ele}>#{ele}</span>
             ))}
@@ -73,31 +73,21 @@ export default class Show extends Component {
               />
               <div className="license-wrapper">
                 <p>
-                  原文作者：<a href="http://dkzmy.com">dk</a>
+                  原文作者：<span>dk</span>
                 </p>
                 <p>
                   原文链接：
-                  <a
-                    href={"https://dkzmy.com/a/" + this.props.match.params.path}
-                  >
-                    {"https://dkzmy.com/a/" + this.props.match.params.path}
-                  </a>
+                  <span>
+                    {"https://dkzmy.com/a/" + this.state.info[4]}
+                  </span>
                 </p>
                 <p>
                   发表日期：
-                  <a
-                    href={"https://dkzmy.com/a/" + this.props.match.params.path}
-                  >
-                    {this.state.info[1]}
-                  </a>
+                  <span>{this.state.info[2]}</span>
                 </p>
                 <p>
                   更新日期：
-                  <a
-                    href={"https://dkzmy.com/a/" + this.props.match.params.path}
-                  >
-                    {this.state.info[2]}
-                  </a>
+                  <span>{this.state.info[3]}</span>
                 </p>
                 <p>
                   版权声明：本文采用

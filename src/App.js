@@ -34,7 +34,6 @@ export default class App extends Component {
               render={(props) => {
                 return (
                   <Show
-                    articles={this.state.articles}
                     tags={this.state.tags}
                     {...props}
                   />
@@ -54,20 +53,7 @@ export default class App extends Component {
                 );
               }}
             />
-            <Route
-              exact
-              path={"/"}
-              render={(props) => {
-                return (
-                  <Home
-                    articles={this.state.articles}
-                    tags={this.state.tags}
-                    {...props}
-                  />
-                );
-              }}
-            />
-            <Redirect to="/" />
+            <Redirect to="/page/1" />
           </Switch>
         </div>
       </BrowserRouter>

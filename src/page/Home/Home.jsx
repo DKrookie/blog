@@ -22,7 +22,11 @@ export default function Home(props) {
         <>
           <Profile />
           <main className="articles">
-            <Articles articles={props.articles} />
+            <Articles
+              articles={props.articles}
+              pageSize={10}
+              currentPage={props.match.params.page}
+            />
             <Page
               total={props.articles.length}
               pageSize={10}

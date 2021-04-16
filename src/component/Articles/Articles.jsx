@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 
 export default function Articles(props) {
   let articles = [];
-  for (let i = 0; i < 20 && i < props.articles.length; i++) {
+  let start = props.pageSize * (props.currentPage - 1);
+  let end =
+    props.articles.length > props.pageSize * props.currentPage
+      ? props.pageSize * props.currentPage
+      : props.articles.length;
+  for (let i = start; i < end; i++) {
     let ele = props.articles[i].split("*=*");
-    let tmp = ele[4].split(" ");
+    let tmp = ele[1].split(" ");
     let tag = [];
     for (let i = 0; i < tmp.length; i++) {
       tag.push(
@@ -15,9 +20,9 @@ export default function Articles(props) {
       );
     }
     articles.push(
-      <div key={ele[0]}>
-        <Link to={`/a/${ele[0]}`} className="abstract-title">
-          {ele[3]}
+      <div key={ele[4]}>
+        <Link to={`/a/${ele[4]}`} className="abstract-title">
+          {ele[0]}
         </Link>
         <div className="abstract-content">
           <hr />
@@ -28,7 +33,7 @@ export default function Articles(props) {
         <div className="abstract-meta">
           <div className="abstract-date">
             <span className="iconfont icon-inbox-calander"></span>
-            <span className="abstract-time">{ele[1]}</span>
+            <span className="abstract-time">{ele[2]}</span>
           </div>
           <div className="abstract-tags">{tag}</div>
         </div>
