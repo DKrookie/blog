@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default function Header(props) {
+import "./Header.scss";
+
+function Header(props) {
   return (
     <header className={`header ${props.menuClickFlag ? "header-active" : ""}`}>
       <div
@@ -20,3 +23,10 @@ export default function Header(props) {
     </header>
   );
 }
+
+const mapStateToProps = (state) => {
+  const { windowScrollYFlag, menuClickFlag } = state;
+  return { windowScrollYFlag, menuClickFlag };
+};
+
+export default connect(mapStateToProps)(Header);

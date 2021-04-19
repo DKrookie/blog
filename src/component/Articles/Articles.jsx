@@ -1,44 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function Articles(props) {
-  let articles = [];
-  let start = props.pageSize * (props.currentPage - 1);
-  let end =
-    props.articles.length > props.pageSize * props.currentPage
-      ? props.pageSize * props.currentPage
-      : props.articles.length;
+import "./Articles.scss";
+
+function Articles(props) {
+  if (!props.articles) {
+    return <article className="post"></article>;
+  }
+  let { articles, pageSize, currentPage } = props,
+    articlesArr = [],
+    start = pageSize * (currentPage - 1),
+    end =
+      articles.length > pageSize * currentPage
+        ? pageSize * currentPage
+        : articles.length;
   for (let i = start; i < end; i++) {
-    let ele = props.articles[i].split("*=*");
-    let tmp = ele[1].split(" ");
     let tag = [];
-    for (let i = 0; i < tmp.length; i++) {
+    for (let j = 0; j < articles[i].tags.length; j++) {
       tag.push(
-        <span className="post-tag" to="/" key={ele[i]}>
-          {tmp[i]}
+        <span className="post-tag" to="/" key={articles[i].tags[j]}>
+          {articles[i].tags[j]}
         </span>
       );
     }
-    articles.push(
-      <div key={ele[4]}>
-        <Link to={`/a/${ele[4]}`} className="abstract-title">
-          {ele[0]}
+    articlesArr.push(
+      <div key={articles[i].filename}>
+        <Link to={`/a/${articles[i].filename}`} className="abstract-title">
+          {articles[i].title}
         </Link>
         <div className="abstract-content">
           <hr />
           <p>
-            这是一个由有条件的任意用户登录+低权限文件上传+低权限目录穿越+低权限文件包含组成。可能是盯着国内OA的人太多了，这个漏洞在2020年9月28号的11.8版本中被更新修复，比较可惜的是，一次更新修复了全部的漏洞逻辑，不禁令人惊叹。
+            {articles[i].desc}
           </p>
         </div>
         <div className="abstract-meta">
           <div className="abstract-date">
             <span className="iconfont icon-inbox-calander"></span>
-            <span className="abstract-time">{ele[2]}</span>
+            <span className="abstract-time">{articles[i].birthTime}</span>
           </div>
           <div className="abstract-tags">{tag}</div>
         </div>
       </div>
     );
   }
-  return <article className="post">{articles}</article>;
+  return <article className="post">{articlesArr}</article>;
 }
+
+const mapStateToProps = (state) => {
+  const { articles, pageSize, currentPage } = state;
+  return { articles, pageSize, currentPage };
+};
+
+export default connect(mapStateToProps)(Articles);

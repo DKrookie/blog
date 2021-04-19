@@ -1,0 +1,47 @@
+.articles {
+  width: 50%;
+  min-width: 80rem;
+  overflow: hidden;
+  margin-left: 3rem;
+  font-size: 1.2rem;
+}
+#App {
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s ease-in;
+    transform: translate(0, 0);
+    .container {
+      display: flex;
+      position: relative;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 4rem 0 0 0;
+      transition: all 0.2s ease-in;
+    }
+  }
+  .wrapper-active {
+    transform: translate(400px, 0);
+  }
+  .sidebar {
+    width: 400px;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background: rgb(34, 34, 34);
+    transition: all 0.3s ease-in;
+    overflow-x: hidden;
+    transform: translate(-400px, 0);
+    color: #eee;
+  }
+  .sidebar-active {
+    transform: translate(0, 0);
+  }
+}

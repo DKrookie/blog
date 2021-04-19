@@ -1,0 +1,58 @@
+.post {
+  color: gray;
+  padding: 1.5rem 0;
+  border-bottom: 1px dashed #aaa;
+  .abstract-title {
+    color: gray;
+    line-height: 4rem;
+    font: {
+      size: 2.5rem;
+      weight: 600;
+    }
+    &:hover {
+      color: rgb(236, 121, 109);
+    }
+  }
+  .abstract-content {
+    p {
+      color: rgb(163, 153, 153);
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+    }
+  }
+  .abstract-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5rem;
+    .abstract-date {
+      .icon-inbox-calander {
+        margin-right: 0.5rem;
+      }
+    }
+    .abstract-tags {
+      .post-tag {
+        position: relative;
+        color: rgb(85, 26, 139);
+        margin-left: 0.5rem;
+        &::before {
+          content: "#";
+        }
+        &::after {
+          content: "";
+          background-color: rgb(85, 26, 139);
+          position: absolute;
+          bottom: -20%;
+          opacity: 0;
+          transition: all 0.2s ease-in;
+          right: 0;
+          height: 2px;
+          width: 90%;
+        }
+        &:hover::after {
+          bottom: -10%;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

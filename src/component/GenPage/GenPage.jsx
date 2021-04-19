@@ -1,30 +1,68 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
-export default function GenPage(props) {
-  let sumPage = Math.ceil(props.total / props.pageSize) || 1,
-    currentPage = Number(props.currentPage) || 1;
+import "./GenPage.scss";
+import { save_current_page_action } from "../../store/action";
+
+function GenPage(props) {
+  if (!props.total) {
+    return <></>;
+  }
+  let sumPage = Math.ceil(props.total / props.pageSize) || 1;
+  if (props.match.params.page < 1 || props.match.params.page > sumPage) {
+    props.history.push("/page/1");
+    return <></>;
+  }
+  let currentPage = Number(props.match.params.page) || 1;
   currentPage = currentPage > sumPage ? sumPage : currentPage;
-  function toTop() {
+  props.save_current_page(props.match.params.page);
+  function go(url) {
+    if (props.location.pathname !== url) {
+      props.history.push(url);
+    }
     window.scrollTo(0, 0);
   }
   return (
     <nav className="page-nav">
       <div>{currentPage}</div>
-      <Link
-        to={`/page/${currentPage - 1}`}
-        className={`${currentPage <= 1 ? "hide" : ""} prev `}
-        onClick={toTop}
+      <span
+        className="prev btn"
+        onClick={() => {
+          go(`/page/${currentPage - 1 < 1 ? 1 : currentPage - 1}`);
+        }}
       >
         上一页
-      </Link>
-      <Link
-        to={`/page/${currentPage + 1}`}
-        className={`${currentPage === sumPage ? "hide" : ""} next`}
-        onClick={toTop}
+      </span>
+      <span
+        className="next btn"
+        onClick={() => {
+          go(`/page/${currentPage + 1 > sumPage ? sumPage : currentPage + 1}`);
+        }}
       >
         下一页
-      </Link>
+      </span>
     </nav>
   );
 }
+
+const mapStateToProps = (state) => {
+  const { pageSize, articles } = state;
+  return {
+    pageSize,
+    total: articles ? articles.length : 0,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    save_current_page: (currentPage) => {
+      dispatch(save_current_page_action(currentPage));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(GenPage));

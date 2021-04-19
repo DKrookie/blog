@@ -5,7 +5,7 @@ import highlight from "highlight.js";
 import "highlight.js/styles/monokai-sublime.css";
 import { connect } from "react-redux";
 
-import "./Show.scss";
+import "./About.scss";
 
 import Header from "../../component/Header/Header";
 import Title from "../../component/Title/Title";
@@ -28,7 +28,7 @@ marked.setOptions({
   xhtml: false,
 });
 
-class Show extends Component {
+class About extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,9 +41,9 @@ class Show extends Component {
   componentDidMount() {
     Axios({
       method: "POST",
-      url: "/api/md",
+      url: "/api/about",
       data: {
-        filename: this.props.match.params.path,
+        filename: "about.md",
       },
     }).then((results) => {
       this.setState({
@@ -161,4 +161,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Show);
+export default connect(mapStateToProps, mapDispatchToProps)(About);

@@ -1,0 +1,60 @@
+import React from "react";
+import { connect } from "react-redux";
+import md5 from "blueimp-md5";
+
+import "./Profile.scss";
+
+function Profile(props) {
+  const { profile } = props;
+  if (!profile) {
+    return <div className="profile"></div>;
+  }
+  function go(url) {
+    window.open(url);
+  }
+  function openEmail(url) {
+    window.location.href = url;
+  }
+  return (
+    <div className="profile">
+      <img
+        src={`https://www.gravatar.com/avatar/${md5(
+          profile.social.email
+        )}?s=640`}
+        alt="gravatar"
+        title="gravatar"
+      />
+      <div className="profile-name">{profile.name}</div>
+      <div className="profile-signature">{profile.signature}</div>
+      <div className="profile-concat">
+        <i
+          className="iconfont icon-email"
+          onClick={() => {
+            openEmail(`mailto:${profile.social.email}`);
+          }}
+          rel="noreferrer"
+        />
+      </div>
+      <div className="frends">
+        <div>友链</div>
+        <div>
+          <span>
+            <a href="/" target="_blank">
+              wiki
+            </a>
+          </span>
+        </div>
+      </div>
+      <div className="about-me">
+        <a href="/">ABOUT ME</a>
+      </div>
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => {
+  const { profile } = state;
+  return { profile };
+};
+
+export default connect(mapStateToProps)(Profile);

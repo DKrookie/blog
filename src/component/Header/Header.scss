@@ -1,0 +1,51 @@
+.header {
+  height: 5rem;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  color: white;
+  transform: translate(0, 0);
+  transition: all 0.3s ease-in;
+  .icon-menu-shou {
+    font: {
+      size: 1.4rem;
+      weight: bold;
+    }
+    width: 1.4rem;
+    height: 1.4rem;
+    cursor: pointer;
+    position: absolute;
+    left: 3rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    transition: all 0.3s ease-in;
+    &:hover {
+      color: rgb(236, 121, 109);
+    }
+  }
+  .icon-menu-shou-active {
+    transform: translate(0, -50%) rotate(180deg);
+  }
+  .icon-menu-shou-black {
+    color: #000;
+  }
+  .home-link {
+    color: white;
+    font: {
+      size: 1.4rem;
+    }
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    &:hover {
+      color: rgb(236, 121, 109);
+    }
+  }
+  .home-link-hide {
+    display: none;
+  }
+}
+.header-active {
+  transform: translate(400px, 0);
+}

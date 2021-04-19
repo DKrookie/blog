@@ -1,0 +1,24 @@
+.page-nav {
+  padding: 1rem 0 0 0.5rem;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+  color: #aaa;
+  .prev {
+    float: left;
+    &:hover {
+      color: rgb(236, 121, 109);
+    }
+  }
+  .next {
+    float: right;
+    &:hover {
+      color: rgb(236, 121, 109);
+    }
+  }
+  .btn {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

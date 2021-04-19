@@ -1,0 +1,33 @@
+.title {
+  background: {
+    // image: url("../../assets/title-img.png");
+    color: black;
+    repeat: no-repeat;
+    position: 50% 50%;
+    size: cover;
+  }
+  height: 50vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  h1 {
+    margin: 0;
+    font-size: 5rem;
+  }
+  p {
+    font: {
+      size: 3rem;
+      weight: 700;
+    }
+    margin: 0;
+  }
+  span {
+    font: {
+      size: 2rem;
+      weight: 700;
+    }
+  }
+}

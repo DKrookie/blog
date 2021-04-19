@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function SidebarTabs(props) {
+import "./SidebarTabs.scss";
+
+export default function SidebarTabs() {
   return (
     <ul className={`sidebar-tabs`}>
       <li className="sidebar-tabs-tags">
