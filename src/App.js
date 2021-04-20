@@ -17,21 +17,31 @@ class App extends Component {
   componentDidMount() {
     Axios.get("/api/all").then((result) => {
       if (result.data.status) {
-        let tmp = {articles: [],tags: [],};
+        let tmp = { articles: [], tags: [] };
         result.data.result.articles.forEach((ele) => {
           ele = ele.split("*=*");
-          tmp.articles.push({title: ele[0],tags: ele[1].split("|"),
-            desc: ele[2],birthTime: ele[3],
-            mTime: ele[4],filename: ele[5],});
+          tmp.articles.push({
+            title: ele[0],
+            tags: ele[1].split("|"),
+            desc: ele[2],
+            birthTime: ele[3],
+            mTime: ele[4],
+            filename: ele[5],
+          });
+        });
+        tmp.articles.sort((a, b) => {
+          return b.birthTime > a.birthTime;
         });
         result.data.result.tags.forEach((tag) => {
           let files = tag.files.map((file) => {
             file = file.split("*=*");
             return {
-              title: file[0],birthTime: file[1],filename: file[2],
+              title: file[0],
+              birthTime: file[1],
+              filename: file[2],
             };
           });
-          tmp.tags.push({tagName: tag.tagName,files,});
+          tmp.tags.push({ tagName: tag.tagName, files });
         });
         tmp.profile = result.data.result.profile;
         this.props.save_all(tmp);

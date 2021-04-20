@@ -50,10 +50,8 @@ class Show extends Component {
         md: results.data.result.str,
         info: results.data.result.info,
       });
-      console.log(results.data.result.info);
     });
   }
-
   ClickAndRemove = () => {
     this.props.change_menu_click_flag();
     this.wrapper.current.removeEventListener("click", this.ClickAndRemove);

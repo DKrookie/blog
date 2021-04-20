@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 import { connect } from "react-redux";
 
 import "./Sidebar.scss";
@@ -7,6 +7,10 @@ import "./Sidebar.scss";
 function Sidebar(props) {
   if (!props.tags) {
     return <div></div>;
+  }
+  function go(url) {
+    props.history.push(url);
+    window.location.reload();
   }
   const postTags = props.tags.map((tag) => {
     return (
@@ -17,9 +21,14 @@ function Sidebar(props) {
             return (
               <li className="tags-post-item" key={file.filename}>
                 <span className="tags-post-date">{file.birthTime}</span>
-                <Link to={`/a/${file.filename}`} className="tags-post-title">
+                <span
+                  onClick={() => {
+                    go(`/a/${file.filename}`);
+                  }}
+                  className="tags-post-title"
+                >
                   {file.title}
-                </Link>
+                </span>
               </li>
             );
           })}
@@ -49,4 +58,4 @@ const mapStateToProps = (state) => {
   return { tags };
 };
 
-export default connect(mapStateToProps)(Sidebar);
+export default connect(mapStateToProps)(withRouter(Sidebar));

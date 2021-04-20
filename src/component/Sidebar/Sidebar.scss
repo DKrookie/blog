@@ -66,6 +66,7 @@
           &:hover,
           &:hover .tags-post-date,
           &:hover .tags-post-title {
+            cursor: pointer;
             border-left-color: rgb(236, 121, 109);
             color: rgb(236, 121, 109);
           }
